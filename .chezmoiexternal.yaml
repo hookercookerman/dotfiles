@@ -1,0 +1,21 @@
+{{- /* "chezmoi" is present as work around for https://github.com/twpayne/chezmoi/discussions/1724 */ -}}
+{{- $cache := dict "chezmoi" .chezmoi -}}
+
+{{- template "read-versions-and-revisions-cache" $cache -}}
+
+".oh-my-bash":
+  type: archive
+  {{ $omzRevision := includeTemplate "get-github-head-revision" (list "oh-my-bash/oh-my-bash" $cache) }}
+  url: "https://github.com/oh-my-bash/oh-my-bash/archive/{{ $omzRevision }}.tar.gz"
+  stripComponents: 1
+  # waiting for https://github.com/twpayne/chezmoi/issues/1614#issuecomment-966524408
+  # exact: true
+
+"{{ joinPath .fontsDir .terminalFont.fileName }}":
+  type: file
+  {{ $nerdFontsVersion := includeTemplate "get-github-latest-version" (list "ryanoasis/nerd-fonts" $cache) }}
+  url: "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v{{ $nerdFontsVersion }}/patched-fonts/FiraCode/Regular/FiraCodeNerdFontMono-Regular.ttf"
+
+{{- template "save-versions-and-revisions-cache" $cache -}}
+
+{{- end -}}
