@@ -1,18 +1,4 @@
-#!/usr/local/bin/bash
 
 if [ -r ~/.bashrc ]; then
    source ~/.bashrc
 fi
-
-# Add Visual Studio Code (code)
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
-export GITHUB_PACKAGES_TOKEN="ad446f6e1f90f18c9c0cc4c6a31ffbfd54864e3d"
-export PATH="/usr/local/opt/luajit-openresty/bin:$PATH"
-
-alias assume="source /opt/homebrew/bin/assume"
-
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
-echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
-echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
-export PYENV_ROOT="$HOME/.pyenv"

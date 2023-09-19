@@ -1,0 +1,17 @@
+# ignore github actions and whatnot
+.github/
+install.sh
+LICENSE
+README.md
+
+# ignore os-specific variants
+{{ if ne .chezmoi.os "darwin" }}
+.bashrc_darwin
+{{ end }}
+{{ if not .is_devcontainer }}
+.bashrc_devcontainer
+{{ end }}
+
+# ignore the contents of these, but not the folders themselves
+#.oh-my-bash/**
+!.oh-my-bash
