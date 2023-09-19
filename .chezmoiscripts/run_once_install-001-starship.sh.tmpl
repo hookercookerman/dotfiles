@@ -1,6 +1,9 @@
-#!/bin/sh
-if  command -v starship >/dev/null 2>&1; then 
-    echo "starship already installed"
-else
-    curl -fsSL https://starship.rs/install.sh | sudo sh
-fi
+{{ if eq .chezmoi.os "linux" -}}
+{{ template "common.tmpl.sh" }}
+
+# Install/Update Starship
+export BIN_DIR="$HOME/.local/bin"
+
+curl -sS "https://starship.rs/install.sh" | sh -s -- --yes
+
+{{ end -}}
